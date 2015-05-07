@@ -20,7 +20,7 @@ define('ImageDirectory', 'pics/');
 	<title></title>
 </head>
 <body>
-	
+    hi
 	<a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
 	
 </body>
