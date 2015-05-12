@@ -3,13 +3,12 @@
 //Configuration for our PHP Server
 set_time_limit(0);
 ini_set('default_socket_timeout', 300);
-
 session_start();
 
 //Make Constant using define.
 define('clientID', '8304ffa83f3048fe917dd57743a2f47a');
 define('clientSecret', '5a583912807c43c4a56b19a3d3469739');
-define('redirectURI', 'http://localhost:8888/appacademyapi/index.php');
+define('redirectURI', 'http://localhost/appacademyapi/index.php');
 define('ImageDirectory', 'pics/');
 
 if (isset($_GET['code'])) {
@@ -29,9 +28,14 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings); //setting the po
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //setting it equal to 1 because wea re getting strings back.
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //but in live work-production we want to set this to true
 
-}   
+ 
 $result = curl_exec($curl);
-curl_close();
+curl_close($curl);
+
+$results = json_decode($result, true);
+echo $results['user']['username'];
+}
+else{
 ?>
 
 <!DOCTYPE html>
@@ -50,3 +54,6 @@ curl_close();
 	<script src="js/main.js"></script>
 </body>
 </html>
+<?php
+}
+?>
