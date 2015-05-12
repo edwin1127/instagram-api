@@ -21,8 +21,17 @@ if (isset($_GET['code'])) {
 		                           'redirect_uri' => redirectURI,
 		                           'code' => $code
 		                           );
-}   
+//curl is what we use in php, its a library calls to other api's
 
+$curl = curl_init($url); //setting a curl session and we put in $url because thats where we are gettig the data from.
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings); //setting the post fields to the arrays setup that we created.
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //setting it equal to 1 because wea re getting strings back.
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //but in live work-production we want to set this to true
+
+}   
+$result = curl_exec($curl);
+curl_close();
 ?>
 
 <!DOCTYPE html>
