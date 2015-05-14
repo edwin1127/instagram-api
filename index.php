@@ -28,11 +28,23 @@ function connectToinstagram($url){
 }
 //function to get user id cause username doesnt allow us to get pictures
 function getUserID($userName){
-	$url = 'http://api.instagram.com/v1/users/search?q='.$userName.'&client_id='.clientID;
+	$url = 'https://api.instagram.com/v1/users/search?q='.$userName.'&client_id='.clientID;
 	$instagramInfo = connectToinstagram($url);
 	$results = json_decode($instagramInfo, true);
 
-    echo $results['data']['0']['id'];
+    return $results['data']['0']['id'];
+}
+
+//function to print out images onto screen
+function printImages($userID){
+	$url = 'https://api.instagram.com/v1/users/'.$userID.'/media/recent?client_id='.clientID.'&count=5';
+	$instagramInfo = connectToinstagram($url);
+	$results = json_decode($instagramInfo, true);
+	//parse through the informaition one by one.
+	foreach ($results['data'] as $items) {
+		$image_url = $items['images']['low_resolution']['url'];
+		echo '<img src=" '.$image_url.' "/><br/>';
+	}
 }
 
 if (isset($_GET['code'])) {
@@ -57,7 +69,12 @@ $result = curl_exec($curl);
 curl_close($curl);
 
 $results = json_decode($result, true);
-getUserID($results['user']['username']);
+
+$userName = $results['user']['username'];
+
+$userID = getUserID($userName);
+
+printImages($userID);
 }
 else{
 ?>
@@ -75,6 +92,7 @@ else{
 <body>
     
 	<a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
+	
 	<script src="js/main.js"></script>
 </body>
 </html>
