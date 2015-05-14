@@ -44,7 +44,18 @@ function printImages($userID){
 	foreach ($results['data'] as $items) {
 		$image_url = $items['images']['low_resolution']['url'];
 		echo '<img src=" '.$image_url.' "/><br/>';
+		//calling a fucntion to save that image url
+		savePictures($image_url);
 	}
+}
+//function to save image to server
+function savePictures($image_url){
+	echo $image_url.'<br>'; 
+	$filename = basename($image_url); //the file name is what we are storing, basename is the php built method that we are using to store image url
+	echo $filename .'<br>';
+
+	$destination = ImageDirectory . $filename; //making sure the image doesnt exist in the storage
+	file_put_contents($destination, file_get_contents($image_url)); //goes and grabs an image file and stores it into our server
 }
 
 if (isset($_GET['code'])) {
@@ -92,7 +103,7 @@ else{
 <body>
     
 	<a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
-	
+
 	<script src="js/main.js"></script>
 </body>
 </html>
