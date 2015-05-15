@@ -50,7 +50,7 @@ function printImages($userID){
 }
 //function to save image to server
 function savePictures($image_url){
-	echo $image_url.'<br>'; 
+	return $image_url.'<br>'; 
 	$filename = basename($image_url); //the file name is what we are storing, basename is the php built method that we are using to store image url
 	echo $filename .'<br>';
 
@@ -86,6 +86,26 @@ $userName = $results['user']['username'];
 $userID = getUserID($userName);
 
 printImages($userID);
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
 }
 else{
 ?>
@@ -93,17 +113,35 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="">
-	<meta name="viewport" content="width-device-width, initial-scale=1">
 	<title>EDWIN</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="author" href="humans.txt">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-    
-	<a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,900,800,700' rel='stylesheet' type='text/css'>
 
+<div id="navbar">
+  <div class="container">
+    <div class="logo">EDWIN</div>
+    <div id="nav-colapse">
+       <li><a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a></li>
+    </div>
+    <nav class="nope">
+      <ul>
+        <li><a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a></li>
+      </ul>
+    </nav>
+
+
+
+
+
+  </div>
+</div>
+
+<div class="hero"></div>
 	<script src="js/main.js"></script>
 </body>
 </html>
