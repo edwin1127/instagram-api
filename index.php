@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/instagram.css">
+	<title></title>
+</head>
+<body>
+
+
+</body>
+</html>
+
 <?php
 
 //Configuration for our PHP Server
@@ -87,25 +99,6 @@ $userID = getUserID($userName);
 
 printImages($userID);
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-	<title></title>
-</head>
-<body>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
 }
 else{
 ?>
@@ -133,10 +126,6 @@ else{
         <li><a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a></li>
       </ul>
     </nav>
-
-
-
-
 
   </div>
 </div>
